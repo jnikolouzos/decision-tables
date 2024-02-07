@@ -1,0 +1,12 @@
+ASSERTION = 'assertion'
+RESULT = 'result'
+EXPECTED_RESULT = 'expected_result'
+DELIMITER = ';'
+COMMA = ','
+DOT = '.'
+LINE = '\n'
+CSV = '.csv'
+SUFFIX = '_results.csv'
+VARIABLE_PREFIX = '$'
+CHARACTERS_TO_REPLACE_WITH_SPACE = ['|', '\\', '/', ',', ';', '.', '(', ')', '[', ']', '{', '}']
+SPACE = ' '

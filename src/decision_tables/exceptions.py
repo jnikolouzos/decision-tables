@@ -1,0 +1,2 @@
+class DecisionTableException(Exception):
+    pass
