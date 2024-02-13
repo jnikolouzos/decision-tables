@@ -1,8 +1,8 @@
 from decision_tables import decision_tables_handler
 from decision_tables.condition import Condition
-from decision_tables.decision_type import DecisionType
+from decision_tables.condition_type import DecisionType
 from decision_tables.exceptions import DecisionTableException
-from decision_tables.rule_type import RuleType
+from decision_tables.condition_type import ConditionType
 from test import virtual_db
 from test.recording import Recording
 
@@ -16,14 +16,14 @@ def print_decision():
 def test_nested():
     field = "foo.bar.beer.title"
     person = Recording(name="jim", age=38, expected_age=0)
-    c = Condition(rule_type=RuleType.EQUAL, field=field, value="A title")
+    c = Condition(rule_type=ConditionType.EQUAL, field=field, value="A title")
     result = c.get_input_value(person)
     assert c.check(person)
     assert (result == "A title")
 
 
 def test_contains_any_of():
-    c = Condition(rule_type=RuleType.CONTAINS_ANY_OF, field="name", value="foo,bar,beer")
+    c = Condition(rule_type=ConditionType.CONTAINS_ANY_OF, field="name", value="foo,bar,beer")
     person = Recording(name="My name is jim and i own a bar that sells whiskey", age=38, expected_age=0)
     assert c.check(person)
 

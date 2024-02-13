@@ -5,7 +5,7 @@ from decision_tables.decision_table_type import DecisionTableType
 from decision_tables.decision_type import DecisionType
 from decision_tables.exceptions import DecisionTableException
 from decision_tables.rule import Rule
-from decision_tables.rule_type import RuleType
+from decision_tables.condition_type import ConditionType
 from test import virtual_db
 
 # todo this is a temporary wrapper of how to call basic function.
@@ -48,7 +48,7 @@ def delete_decision_table(table_id):
 def create_feature_flag(table_name: int, value: bool = True):
     rules = list()
     conditions = list()
-    conditions.append(Condition(rule_type=RuleType.FINALLY, field="", value=""))
+    conditions.append(Condition(rule_type=ConditionType.FINALLY, field="", value=""))
     rules.append(
         Rule(order=1, decision=Decision(decision_type=DecisionType.BOOLEAN, value=value), conditions=conditions))
     decision_table = DecisionTable(table_id=table_name, name=table_name, decision_table_type=DecisionTableType.FEATURE_FLAG, rules=rules)

@@ -5,7 +5,7 @@ from decision_tables.constants import CSV
 from test import virtual_db
 
 # todo remove local path
-SIMULATION_DIR = '/home/jim/projects/decision-tables/src/test/simulations'
+SIMULATION_DIR = '../../simulations'
 
 
 def test_generate_csv():
