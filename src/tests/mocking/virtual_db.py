@@ -1,9 +1,10 @@
-from decision_tables import decision_tables_handler
-from test import samples
+from app.services import decision_tables_handler
+from tests.mocking import samples
 
 db = {}
 
 # todo add a real db.
+
 
 def initialize_data():
     pd = samples.public_domain_decision_table()
@@ -15,10 +16,10 @@ def initialize_data():
     remix_contains_any = samples.remix_decision_table_contains_any_of()
     db[remix_contains_any.table_id] = remix_contains_any
 
-    standalone_enable = decision_tables_handler.create_feature_flag("matching_app.standalone.enable", value=True)
+    standalone_enable = decision_tables_handler.create_feature_flag("matching_app.standalone.flag", value=True)
     standalone_enable.table_id = standalone_enable.name
     db[standalone_enable.table_id] = standalone_enable
 
-    standalone_disable = decision_tables_handler.create_feature_flag("matching_app.standalone.disable", value=False)
+    standalone_disable = decision_tables_handler.create_feature_flag("matching_app.flagging.flag", value=False)
     standalone_disable.table_id = standalone_disable.name
     db[standalone_disable.table_id] = standalone_disable

@@ -1,9 +1,9 @@
-from decision_tables.condition import Condition
-from decision_tables.decision import Decision
-from decision_tables.decision_table import DecisionTable
-from decision_tables.decision_type import DecisionType
-from decision_tables.rule import Rule
-from decision_tables.condition_type import ConditionType
+from schemas.decision_tables.condition import Condition
+from schemas.decision_tables.decision import Decision
+from schemas.decision_tables.decision_table import DecisionTable
+from schemas.decision_tables.decision_type import DecisionType
+from schemas.decision_tables.rule import Rule
+from schemas.decision_tables.condition_type import ConditionType
 
 
 def public_domain_decision_table():

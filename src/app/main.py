@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 
-from decision_tables.decision_table import DecisionTable
-from test.recording import Recording
-from test.virtual_db import initialize_data
-from decision_tables import decision_tables_handler
+from schemas.decision_tables.decision_table import DecisionTable
+from tests.mocking.recording import Recording
+from tests.mocking.virtual_db import initialize_data
+from app.services import decision_tables_handler
 
 app = FastAPI()
 initialize_data()
@@ -19,9 +19,19 @@ def check_feature_flag(table_id: str):
     return decision_tables_handler.check_feature_flag(table_id)
 
 
-@app.get("/get-decision-tables")
-def get_decision_tables():
-    return decision_tables_handler.get_decision_tables()
+@app.get("/get-all-decision-tables")
+def get_all_decision_tables():
+    return decision_tables_handler.get_all_decision_tables()
+
+
+@app.get("/get-decision-table-ids")
+def get_decision_table_ids():
+    return decision_tables_handler.get_decision_table_ids()
+
+
+@app.get("/get-feature-flag-ids")
+def get_feature_flag_ids():
+    return decision_tables_handler.get_feature_flag_ids()
 
 
 @app.get("/get-decision-table/{table_id}")

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from decision_tables.condition_type import ConditionType
-from decision_tables.constants import VARIABLE_PREFIX, COMMA, DOT, CHARACTERS_TO_REPLACE_WITH_SPACE, SPACE
+from schemas.decision_tables.condition_type import ConditionType
+from schemas.decision_tables.constants import VARIABLE_PREFIX, COMMA, DOT, CHARACTERS_TO_REPLACE_WITH_SPACE, SPACE
 
 
 # The condition that needs to be met in order to have a valid rule.
@@ -10,8 +10,7 @@ from decision_tables.constants import VARIABLE_PREFIX, COMMA, DOT, CHARACTERS_TO
 # Dynamic values are also supported on the same input object. For example, you could have a condition like
 # "person.age EQUAL $person.expected_age". $ is used to define that this value is dynamic
 class Condition(BaseModel):
-    table_id: str | None = None
-    condition_id: int | None = None
+    id: int | None = None
     rule_type: ConditionType
     field: str | None = ''
     value: str | None = ''
@@ -90,5 +89,6 @@ def clean_up_str(input_str):
     return format_str(input_str)
 
 
+# It simplifies the string comparison,
 def format_str(input_str):
     return str(input_str.replace('"', '')).lower().strip()
