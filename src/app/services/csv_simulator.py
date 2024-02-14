@@ -2,9 +2,10 @@ import os
 from collections import namedtuple
 import csv
 
-from decision_tables import decision_tables_handler
-from decision_tables.constants import ASSERTION, RESULT, EXPECTED_RESULT, DELIMITER, LINE, CSV, SUFFIX, VARIABLE_PREFIX
-from test import virtual_db
+from app.services import decision_tables_handler
+from app.services.simulator import simulate_decision_table
+from schemas.decision_tables.constants import ASSERTION, RESULT, EXPECTED_RESULT, DELIMITER, LINE, CSV, SUFFIX, VARIABLE_PREFIX
+from tests.mocking import virtual_db
 
 schema = []
 
@@ -20,13 +21,10 @@ def append_to_result_csv(file_path, file_name: str, row):
         csv_file.write(row)
 
 
-def simulate_decision_table(file_path: str, file_name: str):
+def simulate_csv_decision_table(file_path: str, file_name: str):
     data = parse_csv(file_path, file_name)
     for input_object in data:
-        result = decision_tables_handler.execute_decision_table(input_object.table_id, input_object)
-        input_object = input_object._replace(result=result.value)
-        assertion = str(getattr(input_object, EXPECTED_RESULT)) == str(result.value)
-        input_object = input_object._replace(assertion=assertion)
+        input_object = simulate_decision_table(input_object)
         write_result_row(file_path, file_name, input_object)
 
 

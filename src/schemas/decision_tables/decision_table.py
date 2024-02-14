@@ -2,11 +2,11 @@ from typing import Any
 
 from pydantic import BaseModel
 
-from decision_tables.constants import VARIABLE_PREFIX
-from decision_tables.decision import Decision
-from decision_tables.decision_table_type import DecisionTableType
-from decision_tables.exceptions import DecisionTableException
-from decision_tables.rule import Rule
+from schemas.decision_tables.constants import VARIABLE_PREFIX
+from schemas.decision_tables.decision import Decision
+from schemas.decision_tables.decision_table_type import DecisionTableType
+from schemas.decision_tables.exceptions import DecisionTableException
+from schemas.decision_tables.rule import Rule
 
 
 # The root object that orchestrates all rules.

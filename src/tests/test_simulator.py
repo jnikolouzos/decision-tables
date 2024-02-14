@@ -1,15 +1,15 @@
 import os
 
-from decision_tables import simulator
-from decision_tables.constants import CSV
-from test import virtual_db
+from app.services import csv_simulator
+from schemas.decision_tables.constants import CSV
+from tests.mocking import virtual_db
 
 # todo remove local path
 SIMULATION_DIR = '../../simulations'
 
 
 def test_generate_csv():
-    generated_csv = simulator.generate_csv('check_asset_if_pd')
+    generated_csv = csv_simulator.generate_csv('check_asset_if_pd')
     expected_csv = 'title;writers;expected_result;result;assertion\n'
     expected_columns = set(sorted(expected_csv.split(';')))
     csv_columns = set(sorted(generated_csv.split(';')))
@@ -17,7 +17,7 @@ def test_generate_csv():
 
 
 def test_simulation(file_path: str, file_name: str):
-    simulator.simulate_decision_table(file_path, file_name)
+    csv_simulator.simulate_csv_decision_table(file_path, file_name)
 
 
 # Setup results dir
